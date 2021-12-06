@@ -8,6 +8,8 @@ Inference code
 
 File path
 
-'''bash
+```bash
 nnUNet_trainer
-'''
+```
+
+
