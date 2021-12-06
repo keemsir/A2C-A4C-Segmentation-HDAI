@@ -4,4 +4,10 @@ Inference code
 
 ## 0. setting
 
-nnUNet 
+
+
+File path
+
+'''bash
+nnUNet_trainer
+'''
