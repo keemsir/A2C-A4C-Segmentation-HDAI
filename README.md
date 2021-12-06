@@ -55,6 +55,12 @@
 
 Ctrl + Alt + t 를 눌러 Command 창 실행
 
+#### nnUNet 설치
+
+```bash
+pip install nnunet
+```
+
 #### Ubuntu 편집기 Nano 설치
 
 ```bash
@@ -84,16 +90,13 @@ export RESULTS_FOLDER="media/ncc/nnunet_trained_models"
 
 예시) `cd PycharmProject/SoNoSeg`
 
-압축 풀었던 최상위 폴더로 이동
+위의 예시와같이 압축 풀었던 최상위 폴더로 이동
+
 
 
 
 
 
 ```bash
-nnUNet_trainer 2d 
+nnUNet_trainer 2d nnUNetTrainerV2 
 ```
-
-export nnUNet_raw_data_base="media/ncc/nnUNet_raw_data_base"
-export nnUNet_preprocessed="media/ncc/nnUNet_preprocessed"
-export RESULTS_FOLDER="media/ncc/nnunet_trained_models"
