@@ -51,14 +51,49 @@
             └── A4C (*.npy, *.png)
 
 
-## 0. 기본설정
+## 0. 기본환경설정 (Ubuntu)
+
+Ctrl + Alt + t 를 눌러 Command 창 실행
+
+#### Ubuntu 편집기 Nano 설치
+
+```bash
+sudo apt-get install nano
+```
+
+암호 입력
+
+#### Model 및 Inference 등 경로 환경 설정
+
+`touch /home/(user_name)/.bashrc`
+로 bash 파일 생성 (user_name : 사용자 이름으로 되어있는 경로)
+
+`nano /home/(user_name)/.bashrc`
+
+로 파일을 열어서 가장 하단에 다음을 복사하여 붙여넣기
+```bash
+export nnUNet_raw_data_base="media/ncc/nnUNet_raw_data_base"
+export nnUNet_preprocessed="media/ncc/nnUNet_preprocessed"
+export RESULTS_FOLDER="media/ncc/nnunet_trained_models"
+```
+입력 후 Ctrl + x, y(Yes) 를 통해 나가기
+
+`source /home/(user_name)/.bashrc`로 실행
+
+첨부파일의 상위 경로로 이동
+
+예시) `cd PycharmProject/SoNoSeg`
+
+압축 풀었던 최상위 폴더로 이동
 
 
 
-File path
+
 
 ```bash
 nnUNet_trainer 2d 
 ```
 
-
+export nnUNet_raw_data_base="media/ncc/nnUNet_raw_data_base"
+export nnUNet_preprocessed="media/ncc/nnUNet_preprocessed"
+export RESULTS_FOLDER="media/ncc/nnunet_trained_models"
