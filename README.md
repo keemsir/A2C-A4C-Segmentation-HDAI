@@ -17,8 +17,8 @@
     SoNoSeg/
     ├── DB
     │   └── Test
-    │       ├── A2C (*.npy, *.png)
-    │       └── A4C (*.npy, *.png)
+    │       ├── A2C (*.png)
+    │       └── A4C (*.png)
     ├── DB_nifti
     │   └── Test
     │       ├── Task02_A2C (*.npy, *.png)
@@ -33,9 +33,8 @@
     │           └── dataset.json
     ├── media
     │   └── ncc (User Name)
-    │       ├── fold_0
     │       ├── nnUNet_raw_data_base
-    │       │   └── nnUNet_raw_data
+    │       │   └── nnUNet_raw_data (Preprocess data)
     │       └── nnunet_trained_models
     │           └── nnUNet
     │               └── 2d
@@ -116,14 +115,18 @@ python preprocess.py
 nnUNet_convert_decathlon_task -i DB_nifti/test/Task02_A2C/ -output_task_id 002
 ```
 
+## 2. Prediction
 
-
+/SoNoSeg 에서
 
 ```bash
 nnUNet_predict -i media/ncc/nnUNet_raw_data_base/nnUNet_raw_data/Task002_A2C/imagesTs/ -o output/A2C_nifti/ -t 002 -tr nnUNetTrainerV2 -m 2d
 ```
 
+
 `output/A2C_nifti/` 에 nifti 파일 형식의 Inference 출력
+
+## 3. Post Process
 
 /SoNoSeg 에서 `python niftitonpy.py` 실행
 
@@ -133,7 +136,7 @@ output 형식인 nifti 에서 npy 로 변경
 `'output/nifti_A2C' -> 'output/npy_A2C'`
 
 
-## Score 확인 (Dice Coefficient Score, Jaccard Index Score)
+## 4. Score Evaluation (Dice Coefficient Score, Jaccard Index Score)
 
 /SoNoSeg 에서 `python evaluation.py` 실행
 
