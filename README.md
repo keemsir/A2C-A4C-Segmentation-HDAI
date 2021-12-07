@@ -17,8 +17,8 @@
     SoNoSeg/
     ├── DB
     │   └── Test <- Test 할 데이터 넣을 경로
-    │       ├── A2C (*.png)
-    │       └── A4C (*.png)
+    │       ├── A2C (*.png) (Evaluation 을 하려면 해당 폴더에 *.npy 이동)
+    │       └── A4C (*.png) (Evaluation 을 하려면 해당 폴더에 *.npy 이동)
     ├── DB_nifti
     │   └── Test
     │       ├── Task02_A2C
@@ -114,7 +114,7 @@ export RESULTS_FOLDER="media/ncc/nnunet_trained_models"
 위와 같은 경로에 각각(A2C, A4C) png형식의 Test 데이터 위치
 
 ```bash
->> python preprocess.py
+>> python 1_preprocess.py
 ```
 위의 명령어를 통해 Input 데이터 형식 변환 및 Inference 에 필요한 메타데이터 생성
 
