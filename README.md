@@ -165,8 +165,9 @@ Inference 된 output 형식인 nifti 에서 npy 로 변경
 ## 4. Score Evaluation (Dice Coefficient Score, Jaccard Index Score)
 
 * 경로
-* Test path : 'output/npy_A2C' (.npy)
-* Reference path : 'DB/validation/A2C' (.npy)
+* Test path : `'output/npy_A2C'` (.npy)
+* Reference path : `'DB/validation/A2C'` (.npy)
+
 ! Test path 와 Reference path 의 .npy 이름이 서로 같아야 함
 
 
