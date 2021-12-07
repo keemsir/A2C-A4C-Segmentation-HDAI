@@ -1,6 +1,6 @@
 # A2C_A4C_Segmentation 사용법
 
-## Inference code
+## Inference code (Only Prediction mode)
 
 ## Training & Inference 환경
 
