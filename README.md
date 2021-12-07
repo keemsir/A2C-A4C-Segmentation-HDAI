@@ -44,6 +44,8 @@
     │
     └── output
         ├── A2C
+        │   ├── A2C (*.npy)
+        │   └── A4C (*.npy)
         └── A4C
             ├── A2C (*.npy)
             └── A4C (*.npy)
@@ -58,31 +60,35 @@ Ctrl + Alt + t 를 눌러 Command 창 실행
 #### Ubuntu 편집기 Nano 설치
 
 ```bash
-sudo apt-get install nano
+>> sudo apt-get install nano
 ```
 
 #### 0-1. nnUNet 설치
 
 첨부된 SoNoSeg 압축파일 해제 후 해당 폴더로 이동
 
-예시) `cd PycharmProject/SoNoSeg`
+예시) `>> cd PycharmProject/SoNoSeg`
 
 해당 폴더 이동 후 다음의 Command 입력
 
 ```bash
-cd nnUNet
-pip install -e .
+>> cd nnUNet
+>> pip install -e .
 ```
+
+Inference에 필요한 Library 설치
 
 
 #### 0-2. Model 및 Inference 등 경로 환경 설정
 
-`touch /home/(user_name)/.bashrc`
+`>> touch /home/(user_name)/.bashrc`
 로 bash 파일 생성 (user_name : 사용자 이름으로 되어있는 경로)
 
-`nano /home/(user_name)/.bashrc`
+
+`>> nano /home/(user_name)/.bashrc`
 
 로 파일을 열어서 가장 하단에 다음을 복사하여 붙여넣기
+
 ```bash
 export nnUNet_raw_data_base="media/ncc/nnUNet_raw_data_base"
 export nnUNet_preprocessed="media/ncc/nnUNet_preprocessed"
@@ -90,22 +96,22 @@ export RESULTS_FOLDER="media/ncc/nnunet_trained_models"
 ```
 입력 후 Ctrl + x, y(Yes) 를 통해 나가기
 
-`source /home/(user_name)/.bashrc`로 실행
+`>> source /home/(user_name)/.bashrc`로 실행
 
 
 
 ## 1. Test(Input) 데이터 전처리
 
-예시) `cd PycharmProject/SoNoSeg`
+예시) `>> cd PycharmProject/SoNoSeg`
 
 위의 예시와같이 압축 풀었던 최상위 폴더로 이동
 
-예시) `cd PycharmProject/SoNoSeg/DB/test/A2C`
+예시) `>> cd PycharmProject/SoNoSeg/DB/test/A2C`
 
-위와 같은 경로에 Test 데이터(*.png)
+위와 같은 경로에 각각(A2C, A4C) png형식의 Test 데이터 위치
 
 ```bash
-python preprocess.py
+>> python preprocess.py
 ```
 위의 명령어를 통해 Input 데이터 형식 변환 및 Inference 에 필요한 메타데이터 생성
 
@@ -118,15 +124,15 @@ test_folder에서 save_folder의 경로로 전처리
 위의 사진처럼 경로설정
 
 ```bash
-nnUNet_convert_decathlon_task -i DB_nifti/test/Task02_A2C/ -output_task_id 002
+>> nnUNet_convert_decathlon_task -i DB_nifti/test/Task02_A2C/ -output_task_id 002
 ```
 
 ## 2. Prediction
 
-/SoNoSeg 에서
+`/SoNoSeg` 에서
 
 ```bash
-nnUNet_predict -i media/ncc/nnUNet_raw_data_base/nnUNet_raw_data/Task002_A2C/imagesTs/ -o output/A2C_nifti/ -t 002 -tr nnUNetTrainerV2 -m 2d
+>> nnUNet_predict -i media/ncc/nnUNet_raw_data_base/nnUNet_raw_data/Task002_A2C/imagesTs/ -o output/A2C_nifti/ -t 002 -tr nnUNetTrainerV2 -m 2d
 ```
 
 
@@ -134,7 +140,7 @@ nnUNet_predict -i media/ncc/nnUNet_raw_data_base/nnUNet_raw_data/Task002_A2C/ima
 
 ## 3. Post Process
 
-/SoNoSeg 에서 `python niftitonpy.py` 실행
+`/SoNoSeg` 에서 `python niftitonpy.py` 실행
 
 output 형식인 nifti 에서 npy 로 변경
 
@@ -144,7 +150,7 @@ output 형식인 nifti 에서 npy 로 변경
 
 ## 4. Score Evaluation (Dice Coefficient Score, Jaccard Index Score)
 
-/SoNoSeg 에서 `python evaluation.py` 실행
+/SoNoSeg 에서 `>> python evaluation.py` 실행
 
 (test_path='output/npy_A2C', reference_path='DB/validation/A2C')
 
