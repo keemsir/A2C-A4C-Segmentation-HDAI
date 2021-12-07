@@ -125,5 +125,17 @@ nnUNet_predict -i media/ncc/nnUNet_raw_data_base/nnUNet_raw_data/Task002_A2C/ima
 
 `output/A2C_nifti/` 에 nifti 파일 형식의 Inference 출력
 
+/SoNoSeg 에서 `python niftitonpy.py` 실행
 
+output 형식인 nifti 에서 npy 로 변경
+
+* 경로
+`'output/nifti_A2C' -> 'output/npy_A2C'`
+
+
+## Score 확인 (Dice Coefficient Score, Jaccard Index Score)
+
+/SoNoSeg 에서 `python evaluation.py` 실행
+
+(test_path='output/npy_A2C', reference_path='DB/validation/A2C')
 
