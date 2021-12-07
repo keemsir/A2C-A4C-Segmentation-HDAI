@@ -121,6 +121,7 @@ export RESULTS_FOLDER="media/ncc/nnunet_trained_models"
 test_folder에서 save_folder의 경로로 전처리
 
 `test_folder='DB/test/A2C' -> save_folder='DB_nifti/test/Task02_A2C'`
+
 `test_folder='DB/test/A4C' -> save_folder='DB_nifti/test/Task04_A4C'`
 
 
@@ -157,8 +158,10 @@ test_folder에서 save_folder의 경로로 전처리
 
 Inference 된 output 형식인 nifti 에서 npy 로 변경
 
-* 경로
+* 경로 :
+
 `'output/nifti_A2C' -> 'output/npy_A2C'`
+
 `'output/nifti_A4C' -> 'output/npy_A4C'`
 
 
