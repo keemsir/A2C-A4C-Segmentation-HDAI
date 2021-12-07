@@ -99,19 +99,31 @@ export RESULTS_FOLDER="media/ncc/nnunet_trained_models"
 
 ## 1. Test(Input) 데이터 전처리
 
-첨부파일의 상위 경로로 이동
-
 예시) `cd PycharmProject/SoNoSeg`
 
 위의 예시와같이 압축 풀었던 최상위 폴더로 이동
 
 ```bash
-nnUNet_convert 
+python preprocess.py
+```
+위의 명령어를 통해 Input 데이터 형식 변환 및 Inference 에 필요한 메타데이터 생성
+
+## 사진
+
+위의 사진처럼 경로설정
+
+```bash
+nnUNet_convert_decathlon_task -i DB_nifti/test/Task02_A2C/ -output_task_id 002
 ```
 
 
 
 
 ```bash
-nnUNet_trainer 2d nnUNetTrainerV2 
+nnUNet_predict -i media/ncc/nnUNet_raw_data_base/nnUNet_raw_data/Task002_A2C/imagesTs/ -o output/A2C_nifti/ -t 002 -tr nnUNetTrainerV2 -m 2d
 ```
+
+`output/A2C_nifti/` 에 nifti 파일 형식의 Inference 출력
+
+
+
