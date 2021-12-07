@@ -16,17 +16,17 @@
 
     SoNoSeg/
     ├── DB
-    │   └── Test
-    │       ├── A2C (*.png)
+    │   └── Test <- Test 할 데이터 넣을 경로
+    │       ├── A2C (*.png)
     │       └── A4C (*.png)
     ├── DB_nifti
     │   └── Test
-    │       ├── Task02_A2C (*.npy, *.png)
+    │       ├── Task02_A2C
     │       │   ├── imagesTr
     │       │   ├── imagesTs (*.nii.gz)
     │       │   ├── labelsTr
     │       │   └── dataset.json
-    │       └── Task04_A4C (*.npy, *.png)
+    │       └── Task04_A4C
     │           ├── imagesTr
     │           ├── imagesTs (*.nii.gz)
     │           ├── labelsTr
@@ -38,18 +38,15 @@
     │       └── nnunet_trained_models
     │           └── nnUNet
     │               └── 2d
-    │                   ├── Task532_A2C
-    │                   └── Task534_A4C
+    │                   ├── Task002_A2C (A2C Model)
+    │                   └── Task004_A4C (A4C Model)
     ├── nnUNet (Library)
-    │           ├── fold_1
-    │           ├── fold_2
-    │           ├── fold_3
-    │           └── fold_4
+    │
     └── output
         ├── A2C
         └── A4C
-            ├── A2C (*.npy, *.png)
-            └── A4C (*.npy, *.png)
+            ├── A2C (*.npy)
+            └── A4C (*.npy)
 
 
 ## 0. 기본환경설정 (Ubuntu)
@@ -64,9 +61,10 @@ Ctrl + Alt + t 를 눌러 Command 창 실행
 sudo apt-get install nano
 ```
 
-#### nnUNet 설치
+#### 0-1. nnUNet 설치
 
 첨부된 SoNoSeg 압축파일 해제 후 해당 폴더로 이동
+
 예시) `cd PycharmProject/SoNoSeg`
 
 해당 폴더 이동 후 다음의 Command 입력
@@ -77,7 +75,7 @@ pip install -e .
 ```
 
 
-#### Model 및 Inference 등 경로 환경 설정
+#### 0-2. Model 및 Inference 등 경로 환경 설정
 
 `touch /home/(user_name)/.bashrc`
 로 bash 파일 생성 (user_name : 사용자 이름으로 되어있는 경로)
@@ -102,10 +100,18 @@ export RESULTS_FOLDER="media/ncc/nnunet_trained_models"
 
 위의 예시와같이 압축 풀었던 최상위 폴더로 이동
 
+예시) `cd PycharmProject/SoNoSeg/DB/test/A2C`
+
+위와 같은 경로에 Test 데이터(*.png)
+
 ```bash
 python preprocess.py
 ```
 위의 명령어를 통해 Input 데이터 형식 변환 및 Inference 에 필요한 메타데이터 생성
+
+test_folder에서 save_folder의 경로로 전처리
+
+(test_folder='DB/test/A2C' -> save_folder='DB_nifti/test/Task02_A2C')
 
 ## 사진
 
