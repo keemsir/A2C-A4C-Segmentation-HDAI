@@ -43,12 +43,14 @@
     ├── nnUNet (Library)
     │
     └── output
-        ├── A2C
-        │   ├── A2C (*.npy)
-        │   └── A4C (*.npy)
-        └── A4C
-            ├── A2C (*.npy)
-            └── A4C (*.npy)
+        ├── nifti_A2C (*.nii.gz)
+        │   
+        ├── nifti_A4C (*.nii.gz)
+        │
+        ├── npy_A2C (*.npy) <- 최종 Output 데이터 경로
+        │   
+        └── npy_A4C (*.npy) <- 최종 Output 데이터 경로
+
 
 
 ## 0. 기본환경설정 (Ubuntu)
@@ -100,7 +102,8 @@ export RESULTS_FOLDER="media/ncc/nnunet_trained_models"
 
 
 
-## 1. Test(Input) 데이터 전처리
+## 1. Test(Input) 데이터 Preprocess
+
 
 예시) `>> cd PycharmProject/SoNoSeg`
 
@@ -117,40 +120,59 @@ export RESULTS_FOLDER="media/ncc/nnunet_trained_models"
 
 test_folder에서 save_folder의 경로로 전처리
 
-(test_folder='DB/test/A2C' -> save_folder='DB_nifti/test/Task02_A2C')
+`test_folder='DB/test/A2C' -> save_folder='DB_nifti/test/Task02_A2C'`
+`test_folder='DB/test/A4C' -> save_folder='DB_nifti/test/Task04_A4C'`
 
-## 사진
 
-위의 사진처럼 경로설정
+
+`/SoNoSeg` 에서 밑의 명령 각각(A2C, A4C) 실행
 
 ```bash
 >> nnUNet_convert_decathlon_task -i DB_nifti/test/Task02_A2C/ -output_task_id 002
+>> nnUNet_convert_decathlon_task -i DB_nifti/test/Task04_A4C/ -output_task_id 004
 ```
+- -i : 위에서 전처리 한 경로 (nifti 파일)
+- -o : task Num 설정
+
+
 
 ## 2. Prediction
 
-`/SoNoSeg` 에서
+
+`/SoNoSeg` 에서 밑의 명령 각각(A2C, A4C) 실행
 
 ```bash
->> nnUNet_predict -i media/ncc/nnUNet_raw_data_base/nnUNet_raw_data/Task002_A2C/imagesTs/ -o output/A2C_nifti/ -t 002 -tr nnUNetTrainerV2 -m 2d
+>> nnUNet_predict -i media/ncc/nnUNet_raw_data_base/nnUNet_raw_data/Task002_A2C/imagesTs/ -o output/nifti_A2C/ -t 002 -tr nnUNetTrainerV2 -m 2d
+>> nnUNet_predict -i media/ncc/nnUNet_raw_data_base/nnUNet_raw_data/Task004_A4C/imagesTs/ -o output/nifti_A4C/ -t 004 -tr nnUNetTrainerV2 -m 2d
 ```
 
 
-`output/A2C_nifti/` 에 nifti 파일 형식의 Inference 출력
+`output/nifti_A2C(A4C)/` 에 nifti 파일 형식의 Inference 출력
 
-## 3. Post Process
 
-`/SoNoSeg` 에서 `python niftitonpy.py` 실행
 
-output 형식인 nifti 에서 npy 로 변경
+## 3. Postprocess
+
+`/SoNoSeg` 에서 `>> python niftitonpy.py` 실행
+
+Inference 된 output 형식인 nifti 에서 npy 로 변경
 
 * 경로
 `'output/nifti_A2C' -> 'output/npy_A2C'`
+`'output/nifti_A4C' -> 'output/npy_A4C'`
 
 
 ## 4. Score Evaluation (Dice Coefficient Score, Jaccard Index Score)
 
+* 경로
+* Test path : 'output/npy_A2C' (.npy)
+* Reference path : 'DB/validation/A2C' (.npy)
+! Test path 와 Reference path 의 .npy 이름이 서로 같아야 함
+
+
 /SoNoSeg 에서 `>> python evaluation.py` 실행
 
-(test_path='output/npy_A2C', reference_path='DB/validation/A2C')
+## picture
+
+다음과같이 A2C, A4C 에 대한 결과 계산
 
