@@ -154,7 +154,7 @@ test_folder에서 save_folder의 경로로 전처리
 
 ## 3. Postprocess
 
-`/SoNoSeg` 에서 `>> python niftitonpy.py` 실행
+`/SoNoSeg` 에서 `>> python 2_niftitonpy.py` 실행
 
 Inference 된 output 형식인 nifti 에서 npy 로 변경
 
@@ -174,7 +174,7 @@ Inference 된 output 형식인 nifti 에서 npy 로 변경
 ! Test path 와 Reference path 의 .npy 이름이 서로 같아야 함
 
 
-/SoNoSeg 에서 `>> python evaluation.py` 실행
+/SoNoSeg 에서 `>> python 3_evaluation.py` 실행
 
 <img src="evaluation.png" width="512px" />
 
