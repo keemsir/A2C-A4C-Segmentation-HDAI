@@ -180,3 +180,7 @@ Inference 된 output 형식인 nifti 에서 npy 로 변경
 
 다음과같이 A2C, A4C 에 대한 결과 계산
 
+
+
+### Reference
+[H.D.A.I. Github Address](https://github.com/DatathonInfo/H.D.A.I.2021)
