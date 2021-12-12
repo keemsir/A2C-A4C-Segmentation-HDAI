@@ -182,5 +182,7 @@ Inference 된 output 형식인 nifti 에서 npy 로 변경
 
 
 
+----
+
 ### Reference
 [H.D.A.I. Github Address](https://github.com/DatathonInfo/H.D.A.I.2021)
